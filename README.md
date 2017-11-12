@@ -16,4 +16,3 @@ where n is a number that is unique to this anchor. Anchors should be
 numbered in order, starting at 1. For example, if the above line of text
 contains the 5th anchor of the file, then it should be displayed as follows:
     Here is more <information.>[5]
-
