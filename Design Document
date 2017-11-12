@@ -1,0 +1,75 @@
+Developer: Jared Heidt
+
+DESIGN DOCUMENT
+
+------------------------------------------------------------------------
+
+COMPONENT: class FileBrowser
+
+A simple file browser.  This file browser allows users to open files and browse to other file links (or anchors) within in their current file.  This component provides the command execution for the user.  This component also generates the frame of the user interface.  The component also provides the user with feedback when errors are generated.
+
+Public method:
+
+o void run()
+
+    Starts the browser, gets the window height, gets the line length, then allows user to execute commands.  
+    
+Implementation note: The lines of text for the current file, file names to the links on the page, and links to previous pages are all stored in a Buffer object.  The displaying of the buffer contents and the execution of the commands is delegated to the Buffer object. Navigation (browsing) of links on files is also delegated to the Buffer object.
+
+Collaborator: Buffer.
+
+------------------------------------------------------------------------
+
+COMPONENT: class Buffer
+
+A buffer for a file browser.  Holds the lines of text and executes commands on them.  Buffer also holds file names for the links on the current page and links to the previously visited pages. Displays the contents of the buffer.  Executes the navigation to a link on a file. See program specification for details on commands.
+
+Public methods:
+          
+o Buffer() 
+
+    (Compiler-generated.) Creates an empty buffer. 
+
+o void display() const
+
+    Displays the lines of text that the user is currently viewing according to the line length and the window height. The method also takes account for blank lines which separate paragraphs in a file.
+    
+
+o void move_to_next_page() 
+
+    Self-explanatory.
+
+
+o void move_to_previous_page() 
+   
+ Self-explanatory.
+
+o const string & file_name() const
+
+    Returns the name of the file.
+
+o bool open(const string & file_name)
+  
+    Executes the corresponding file browser command on the buffer.  This method organizes the lines for storing. The method parses the file while separating paragraphs with a line of whitespace.  All filenames for anchors listed on the page are stored in a vector for future use of the anchor.  The method returns true if file is opened successfully. The method returns false if the program cannot successfully open the file.
+    
+o void set_window_height(const int& h)
+
+    Self-explanatory.
+
+o void set_line_length(cons int& l)
+
+    Self-explanatory.
+								
+o bool go_to_link(const int& link_num)
+	
+    Executes the ‘go’ command which allows the user to navigate to links (also called anchors) listed on the page.  link_num is the link number to the anchor displayed in the file.  In this method, the current filename is stored in a vector which stores previously visited links. After the current filename is stored, the program opens the filename of the link. The method returns true if the link number is valid and the corresponding filename is valid. If the link number or its corresponding filename is not valid, then an error message is generated and displayed to the user.
+
+o bool go_back()
+
+    Executes the corresponding back command on the file browser.  If the previous page is valid (or existent), then this method changes the current file to the previously visited file (stored in a vector). This method returns true if the buffer can successfully open the (existent) previously visited page. If the program cannot go back a page, an error message is generated and displayed to the user.
+
+o bool search(const std::string& input)
+    
+    Executes the ‘search’ command which takes a string input from the users and searches for this string in the file. If the string is found, the line which contains that string becomes the top line and the function returns true. If the string is not found, an error message is generated and displayed to the user.
+
+Implementation note:  The Buffer stores each line of text as a string and all the lines in a vector (according to the line length).  Also stores the index of the line currently displayed at the top of the window, as well as the name of the file and the window height.
