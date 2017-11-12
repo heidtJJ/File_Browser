@@ -1,7 +1,7 @@
 # File_Browser
 A simple File Browser.
 
-This software project is a file browser which allows people to open files as well as browse to other "links" within a file. 
+This project is a file browser which allows people to open files as well as browse to other "links" within a file. 
 
 Here are more details. The files are plain text files that may contain anchors
 that provide links to other files. More precisely, an anchor is a string of the form:
