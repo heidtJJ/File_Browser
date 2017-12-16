@@ -8,7 +8,7 @@ links to other files. More precisely, an anchor is a string of the form:
 
 	\<a file text\>
 
-where file is the name of another file and text is a piece of text. 
+where file is the name of another file and text is a piece of text. The 'a' stands for anchor.
 For example, here’s a line of text that contains an anchor:
 
     Here is more \<a info.txt information.\>"
