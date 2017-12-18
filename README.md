@@ -23,4 +23,4 @@ contains the 5th anchor of the file, then it should be displayed as follows:
 
     Here is more \<information.\>[5]
 
-See File_Browser/Design_Document for implementation details
+See [design  document](/File_Browser/Design_Document.txt) for implementation details
